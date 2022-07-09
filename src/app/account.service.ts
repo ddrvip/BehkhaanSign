@@ -15,7 +15,7 @@ export class AccountService {
     }
 
     CheckIfExistsAndConfirmed(body: AccountModel): Observable<any> {
-        return this.http.post<any>(`${this.serviceUrl}/Account/CheckIfExistsAndConfirmed`, body);
+        return this.http.post<any>(`${this.serviceUrl}/Account/CheckIfExistsAndConfirmed`, null);
     }
 
     Register(body: AccountModel): Observable<any> {

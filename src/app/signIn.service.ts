@@ -24,15 +24,7 @@ signin(userName: string, password: string): Observable<any> {
     };
 
     const data = `client_id=api.angular.client&client_secret=secret&scope=IdentityServerApi customer shelve genre like comment rate review activity follow friendRequest friend file author book publisher notification offline_access&grant_type=password&username=${userName}&password=${password}`;
-    return this.http.post<any>(`${this.serviceUrl}/connect/token`, data, httpOptions).pipe(
-        map(result => {
-            if (result.access_token) {
-                // ? Remove the users state for new Login
-                 localStorage.setItem('access_token', result.access_token);
-            }
-            return result;
-        })
-    );
+    return this.http.post<any>(`${this.serviceUrl}/connect/token`, data, httpOptions);
 }
 
 }

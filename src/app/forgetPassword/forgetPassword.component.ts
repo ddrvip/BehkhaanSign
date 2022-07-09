@@ -1,14 +1,12 @@
 import { Router } from '@angular/router';
 import { AccountService } from './../account.service';
 import { Component, OnInit } from '@angular/core';
-import { LoggingService } from '../logging.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forgetPassword',
   templateUrl:'./forgetPassword.component.html',
   styleUrls: ['./forgetPassword.component.css'],
-  providers: [LoggingService]
 })
 export class forgetPasswordComponent implements OnInit {
   signIn: any;
@@ -19,7 +17,6 @@ export class forgetPasswordComponent implements OnInit {
   users: any;
   constructor(
     
-    private loggingService: LoggingService,
     private fb: FormBuilder,
     private AccountService : AccountService,
     private router: Router
@@ -29,10 +26,7 @@ export class forgetPasswordComponent implements OnInit {
 this.forgetForm = this.fb.group({
   phoneNumber: ['', [Validators.required,Validators.pattern('^[0]{1}[9]{1}[0-9]{9}$')]]
 });
-    this.loggingService.getAllUsers().subscribe(res => {
-      console.log(res);
-      this.users = res;
-    })
+
   }
 
   submit(){

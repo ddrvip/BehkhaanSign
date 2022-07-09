@@ -5,7 +5,6 @@
 
 .inputstyle {
   height: 40px;
-  /* outline: none; */
   font-size: inherit;
 }
 
@@ -52,8 +51,7 @@ input {
   background-color: transparent;
 }
 
-input:focus  {
-  /* border-color: rgb(196, 38, 33); */
+input:focus {
   border: 1px solid #0d6efd !important;
   outline: none;
 }

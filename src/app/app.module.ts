@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import {  RouterModule, Routes } from '@angular/router';
@@ -15,13 +16,11 @@ import { HomeComponent } from './home/home.component';
 
 const routes : Routes = [
   { path: '', component:LoginComponent },
-  // { path: '', component:Page2Component },
-  { path: 'signUpCode', component:signUpCodeComponent,canActivate:[AuthGuard]},
+  { path: 'signUpCode', component:signUpCodeComponent},
   { path: 'forgetPassword', component:forgetPasswordComponent },
   { path: 'newPass', component:newPassComponent },
-  { path: '', component:signUpCodeComponent },
-  { path : 'home', component: HomeComponent}
-  // { path: '**', component:LoginComponent }, 
+  { path: 'layout', component: HomeComponent, canActivate:[AuthGuard]},
+  { path: '**', component:NotFoundComponent }, 
 ];
 
 @NgModule({
@@ -45,7 +44,7 @@ const routes : Routes = [
     
 
   ],
-  exports: [MatTabsModule],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 

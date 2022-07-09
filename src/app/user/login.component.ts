@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountModel } from '../account.model';
-
+ 
 import { AccountService } from '../account.service';
-import { AuthService } from '../auth.service';
-import { LoggingService } from '../logging.service';
 import { SignInService } from '../signIn.service';
 @Component({
     selector: 'login-user',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    providers: [ LoggingService ]
+    styleUrls: ['./login.component.css']
+    
 
 })
 export class LoginComponent implements OnInit {
+    //?تعریف یک متغیر با یک دیتا تایپ خاص
 signIn: any;
 showPassword: boolean = false;
 status: boolean = false;
@@ -24,10 +23,10 @@ errorUserName: boolean = false;
 
 
 account: AccountModel = new AccountModel();
-constructor(private fb:FormBuilder,
+
+constructor
+   (private fb:FormBuilder,
     private router: Router,
-    private authService: AuthService,
-    private loggingService: LoggingService,
     private accountService: AccountService,
     private signInService: SignInService
     ){
@@ -38,7 +37,7 @@ ngOnInit(): void {
     
 
     this.signForm = this.fb.group({
-        fname: ['',Validators.required],
+        fname: ['',[Validators.required,Validators.pattern('(^[a-zضصثقفغعهخحکمنتالبیسشظطزرذدئوA-Z]+)$')]],
         lname: ['',Validators.required],
         phoneNumber: ['',Validators.compose([Validators.required,Validators.pattern('^[0]{1}[9]{1}[0-9]{9}$')])],
         pswrd: ['',[Validators.required,Validators.minLength(6)]],
@@ -51,16 +50,12 @@ ngOnInit(): void {
     })
 
 
-    // this.loggingService.getAllUsers().subscribe(res => {
-    //     console.log(res);
-        
-    // })
-
+    
 }
 submit(){
 
  
-// this.authService.loginFn(this.signForm.value.fname);
+
 this.account.password = this.signForm.value.pswrd;
 this.account.confirmPassword = this.signForm.value.pswrd;
 this.account!.user!.firstname = this.signForm.value.fname;
@@ -115,9 +110,13 @@ checkUsername(){
 
 login(){
     this.signInService.signin(this.signIn.value.lname, this.signIn.value.pswrd).subscribe(res => {
-        if(!res.hasError){
-             this.router.navigate(['home']);
-        } 
+             localStorage.setItem('access_token', res.access_token);
+             
+             if(localStorage.getItem('access_token')){
+                 this.router.navigate(['layout']);
+             }
+             
+       
     })
 }
 

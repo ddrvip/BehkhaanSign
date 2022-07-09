@@ -1,135 +1,146 @@
 <div (mousedown)="bgColor = true">
-<header class="header col-12 px-2 px-sm-0 d-flex  justify-content-between flex-wrap" style="height: 100px;" >
+  <header class="header col-12 px-2 px-sm-0 d-flex  justify-content-between flex-wrap" style="height: 100px;">
 
 
-  <div class="col-lg-2 col-3 navbar justify-content-center d-flex flex-md-row align-items-center">
+    <div class="col-lg-2 col-3 navbar justify-content-center d-flex flex-md-row align-items-center">
 
-    <button class="btn" style="border-radius: 10px; height: 40px; width: 99px; background-color: #2bae66; color: white; font-size: 12px;"> عضویت
+      <button class="btn" routerLink=""
+        style="border-radius: 10px; height: 40px; width: 99px; background-color: #2bae66; color: white; font-size: 12px;">
+        عضویت
 
-      | ورود</button>
-  </div>
-  <div class="searchBar  d-flex col-lg-7 col-4 justify-content-center align-items-center">
-    <form class="example d-flex w-100">
-      <div style="height: 44px; border-radius: 10px 10px 0px 0px;" [class]="{'dd':bgColor}"
-        class="d-flex w-100 align-items-center border justify-content-end">
-        <input class="searchInput justify-content-center border-0 col-11" type="text" (mouseup)="bgColor = false"
-          placeholder="جستجو در بیش از 1,000,000 کتاب، کاربر و نویسنده" name="search2">
-        <span class=" col-1 d-flex justify-content-center">
-          <img width="20px" height="20px" src="../../assets/search.webp">
-        </span>
-      </div>
-    </form>
-  </div>
-  <div class="col-lg-2 col-3 d-flex justify-content-center align-items-center">
-    <img _ngcontent-serverapp-c79="" src="../../assets/Logo.svg" alt="بهخوان" class="pointer ng-tns-c79-0">
-  </div>
-
-
-</header>
-<br style="height: 30px;">
-<div>
-<div class="m-0 d-flex row justify-content-center">
-  <div class="d-flex flex-wrap col-12 col-lg-3 col-md-6 w-100 justify-content-center">
-
-
-    <div class="d-flex justify-content-around align-items-center" style="width: 400px;">
-      <span class="pointer w-50 text-center" [class]="{'bb': !status , 'cc' : status}"
-        (click)="status = false">ورود</span>
-      <span class="pointer w-50 text-center" [class]="{'bb': status , 'cc' : !status}" (click)="status = true">ثبت
-        نام</span>
-      <br>
-      <br>
+        | ورود</button>
     </div>
-    <div style="padding-top: 10px;" class="d-flex justify-content-center col-12">
-      <img width="157px" height="53px" src="../../assets/Logo.svg">
-  
-    </div>
-    
-    <p  class="mb-0 mt-3 formparagraph1 w-100 text-center">!خوش آمدید</p>
-    <p class="formparagraph2 w-100 text-center">...پایانی بر هیچ کتابی نیست</p>
-    <div class="d-flex justify-content-center w-100" *ngIf="status">
-      <form [formGroup]="signForm" (ngSubmit)="submit()"
-        class="form-container m-0 h-auto lh-1 rounded justify-content-center d-flex  flex-column form-group"
-        id="formvalidation">
-        <label for="fname"></label>
-        <br />
-        <input formControlName="fname" type="text" class=" p-3 w-100 rounded lh-lg inputstyle d-inline-block"
-          placeholder="نام و نام خانوادگی" /><br />
-        <label for="lname"></label><br />
-        <div style="height: 44px;" class="position-relative d-flex w-100 align-items-center">
-          <span *ngIf="!errorUserName && username.value.length > 2"
-            class="position-absolute d-flex align-items-center"><img width="20px" height="20px"
-              src="../../assets/checktick.jpg"></span>
-          <input formControlName="lname" #username type="text" (keyup)="checkUsername()"
-            class="inputAZ p-3 w-100 border-1 rounded lh-lg inputstyle" placeholder="نام کاربری"><br />
+    <div class="searchBar  d-flex col-lg-7 col-4 justify-content-center align-items-center">
+      <form class="example d-flex w-100">
+        <div style="height: 44px; border-radius: 10px 10px 0px 0px;" [class]="{'dd':bgColor}"
+          class="d-flex w-100 align-items-center border justify-content-end">
+          <input class="searchInput justify-content-center border-0 col-11" type="text" (mouseup)="bgColor = false"
+            placeholder="جستجو در بیش از 1,000,000 کتاب، کاربر و نویسنده" name="search2">
+          <span class=" col-1 d-flex justify-content-center">
+            <img width="20px" height="20px" src="../../assets/search.webp">
+          </span>
         </div>
-        <div class="d-flex justify-content-end">
-          <span *ngIf="errorUserName" class="text-danger" style="font-size: 12px;">این نام کاربری قبلا ثبت شده
-            است</span>
-        </div>
-        <label for="pswrd"></label><br />
-        <label for="age"></label><br />
-        <input formControlName="phoneNumber"
-          [class.text-success]="!signForm.controls['phoneNumber'].hasError('pattern')" type="text"
-          class="inputstyle p-3 w-100 border-1 rounded lh-lg inputpl"
-          placeholder="شماره همراه مثال(09125986366)" /><br />
-        <div *ngIf="signForm.controls['phoneNumber'].hasError('pattern')" class="d-flex justify-content-end">
-          <span class="text-danger" style="font-size: 12px;"> شماره موبایل نامعتبر است.</span>
-        </div>
-        <label for="pswrd"></label><br />
-        <div style="height: 44px;" class="position-relative d-flex w-100 align-items-center">
-          <span *ngIf="!showPassword" class="position-absolute d-flex align-items-center"
-            (click)="showPassword = !showPassword"><img width="20px" height="20px" src="../../assets/www.webp"></span>
-          <span *ngIf="showPassword" class="position-absolute d-flex align-items-center"
-            (click)="showPassword = !showPassword"><img width="20px" height="20px" src="../../assets/ww.webp"></span>
-          <input formControlName="pswrd" id="myInput" [type]="showPassword ? 'text' : 'password'"
-            class="border-1 inputstyle p-3 w-100 " placeholder="  رمز عبور (حداقل 6 کاراکتر)">
-        </div>
-        <br>        
-        <p  style="text-align: center; line-height: 1.5; font-size: 12px; color: gray;">با ثبت نام در بهخوان شما شرایط و قوانین استفاده از سرویس‌ها و قوانین حریم خصوصی آن را می‌پذیرید</p>
-
-        <button
-          class="sign-up-btn signbtn  d-flex align-items-center justify-content-center p-3 lh-lg border-1 w-100 text-white "
-          [disabled]="!signForm.valid" type="submit">
-          ثبت نام
-        </button>
       </form>
     </div>
-    <div class="d-flex justify-content-center w-100" *ngIf="!status">
-      <form [formGroup]="signIn" (ngSubmit)="login()"
-        class="form-container m-0 h-auto lh-1 rounded justify-content-center d-flex flex-column form-group"
-        id="formvalidation">
-        <br />
-        <label for="lname"></label><br />
-        <input formControlName="lname" type="text" class=" p-3 w-100    inputstyle" placeholder="نام کاربری" /><br />
-        <br >
-        <label for="pswrd"></label><br />
-        <div class="d-flex justify-content-center align-items-center">
-          <div class="  d-flex w-100">
+    <div class="col-lg-2 col-3 d-flex justify-content-center align-items-center">
+      <img _ngcontent-serverapp-c79="" src="../../assets/Logo.svg" alt="بهخوان" class="pointer ng-tns-c79-0">
+    </div>
+
+
+  </header>
+  <br style="height: 30px;">
+  <div>
+    <div class="m-0 d-flex row justify-content-center">
+      <div class="d-flex flex-wrap col-12 col-lg-3 col-md-6 w-100 justify-content-center">
+
+
+        <div class="d-flex justify-content-around align-items-center" style="width: 400px;">
+          <span class="pointer w-50 text-center" [class]="{'bb': !status , 'cc' : status}"
+            (click)="status = false">ورود</span>
+          <span class="pointer w-50 text-center" [class]="{'bb': status , 'cc' : !status}" (click)="status = true">ثبت
+            نام</span>
+          <br>
+          <br>
+        </div>
+        <div style="padding-top: 10px;" class="d-flex justify-content-center col-12">
+          <img width="157px" height="53px" src="../../assets/Logo.svg">
+
+        </div>
+
+        <p class="mb-0 mt-3 formparagraph1 w-100 text-center">!خوش آمدید</p>
+        <p class="formparagraph2 w-100 text-center">...پایانی بر هیچ کتابی نیست</p>
+        <div class="d-flex justify-content-center w-100" *ngIf="status">
+          <form [formGroup]="signForm" (ngSubmit)="submit()"
+            class="form-container m-0 h-auto lh-1 rounded justify-content-center d-flex  flex-column form-group"
+            id="formvalidation">
+            <label for="fname"></label>
+            <br />
+            <input formControlName="fname" type="text" class=" p-3 w-100 rounded lh-lg inputstyle d-inline-block"
+              placeholder="نام و نام خانوادگی" /><br />
+
+            <div *ngIf="signForm.controls['fname'].hasError('pattern')" class="d-flex justify-content-end">
+              <span class="text-danger" style="font-size: 12px;">فقط حروف فارسی یا انگلیسی</span>
+            </div>
+            <label for="lname"></label><br />
+            <div style="height: 44px;" class="position-relative d-flex w-100 align-items-center">
+              <span *ngIf="!errorUserName && username.value.length >= 3"
+                class="position-absolute d-flex align-items-center"><img width="20px" height="20px"
+                  src="../../assets/checktick.jpg"></span>
+              <input formControlName="lname" #username type="text" (keyup)="checkUsername()"
+                class="inputAZ p-3 w-100 border-1 rounded lh-lg inputstyle" placeholder="نام کاربری"><br />
+            </div>
+            <div class="d-flex justify-content-end">
+              <span *ngIf="errorUserName" class="text-danger" style="font-size: 12px;">این نام کاربری قبلا ثبت شده
+                است</span>
+            </div>
+            <label for="pswrd"></label><br />
+            <label for="age"></label><br />
+            <input formControlName="phoneNumber"
+              [class.text-success]="!signForm.controls['phoneNumber'].hasError('pattern')" type="text"
+              class="inputstyle p-3 w-100 border-1 rounded lh-lg inputpl"
+              placeholder="شماره همراه مثال(09125986366)" /><br />
+            <div *ngIf="signForm.controls['phoneNumber'].hasError('pattern')" class="d-flex justify-content-end">
+              <span class="text-danger" style="font-size: 12px;"> شماره موبایل نامعتبر است.</span>
+            </div>
+
+            <label for="pswrd"></label><br />
             <div style="height: 44px;" class="position-relative d-flex w-100 align-items-center">
               <span *ngIf="!showPassword" class="position-absolute d-flex align-items-center"
-                (mouseenter)="showPassword = !showPassword"><img width="20px" height="20px"
+                (click)="showPassword = !showPassword"><img width="20px" height="20px"
                   src="../../assets/www.webp"></span>
               <span *ngIf="showPassword" class="position-absolute d-flex align-items-center"
-                (mouseout)="showPassword = !showPassword"><img width="20px" height="20px"
-                  src="../../assets/www.webp"></span>
+                (click)="showPassword = !showPassword"><img width="20px" height="20px"
+                  src="../../assets/ww.webp"></span>
               <input formControlName="pswrd" id="myInput" [type]="showPassword ? 'text' : 'password'"
-                class=" inputstyle p-3 w-100 " placeholder="  رمز عبور (حداقل 6 کاراکتر)">
+                class="border-1 inputstyle p-3 w-100 " placeholder="  رمز عبور (حداقل 6 کاراکتر)">
             </div>
-          </div>
+            <br>
+            <p style="text-align: center; line-height: 1.5; font-size: 12px; color: gray;">با ثبت نام در بهخوان شما
+              شرایط و قوانین استفاده از سرویس‌ها و قوانین حریم خصوصی آن را می‌پذیرید</p>
+
+            <button
+              class="sign-up-btn signbtn  d-flex align-items-center justify-content-center p-3 lh-lg border-1 w-100 text-white "
+              [disabled]="!signForm.valid" type="submit">
+              ثبت نام
+            </button>
+          </form>
         </div>
-        <br>
-        <button  
-          class="signbtn sign-up-btn d-flex align-items-center justify-content-center p-3 lh-lg border-1 w-100 text-white  "
-          [disabled]="!signIn.valid" type="submit">
-          ورود
-        </button>
-        <a style="text-align: right; font-size: 13px; padding-top: 10px; text-decoration: none; color: gray; "
-          routerLink='forgetPassword'>رمز عبورم را فراموش کرده‌ام</a>
-      </form>
+        <div class="d-flex justify-content-center w-100" *ngIf="!status">
+          <form [formGroup]="signIn" (ngSubmit)="login()"
+            class="form-container m-0 h-auto lh-1 rounded justify-content-center d-flex flex-column form-group"
+            id="formvalidation">
+            <br />
+            <label for="lname"></label><br />
+            <input formControlName="lname" type="text" class=" p-3 w-100    inputstyle"
+              placeholder="نام کاربری" /><br />
+            <br>
+            <label for="pswrd"></label><br />
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="  d-flex w-100">
+                <div style="height: 44px;" class="position-relative d-flex w-100 align-items-center">
+                  <span *ngIf="!showPassword" class="position-absolute d-flex align-items-center"
+                    (mouseenter)="showPassword = !showPassword"><img width="20px" height="20px"
+                      src="../../assets/www.webp"></span>
+                  <span *ngIf="showPassword" class="position-absolute d-flex align-items-center"
+                    (mouseout)="showPassword = !showPassword"><img width="20px" height="20px"
+                      src="../../assets/www.webp"></span>
+                  <input formControlName="pswrd" id="myInput" [type]="showPassword ? 'text' : 'password'"
+                    class=" inputstyle p-3 w-100 " placeholder="  رمز عبور (حداقل 6 کاراکتر)">
+                </div>
+              </div>
+            </div>
+            <br>
+            <button
+              class="signbtn sign-up-btn d-flex align-items-center justify-content-center p-3 lh-lg border-1 w-100 text-white  "
+              [disabled]="!signIn.valid" type="submit">
+              ورود
+            </button>
+            <a style="text-align: right; font-size: 13px; padding-top: 10px; text-decoration: none; color: gray; "
+              routerLink='forgetPassword'>رمز عبورم را فراموش کرده‌ام</a>
+          </form>
+        </div>
+      </div>
     </div>
+
+
   </div>
-</div>
-
-
-</div>
